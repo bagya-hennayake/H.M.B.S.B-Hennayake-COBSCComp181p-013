@@ -6,25 +6,51 @@
 //  Copyright © 2019 Bagya Hennayake. All rights reserved.
 //
 
+
 import UIKit
+import SwiftyJSON
+import FirebaseDatabase
+import Kingfisher
+import FirebaseStorage
 
 class ViewPostViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var prof_pic: UIButton!
+    @IBOutlet weak var Post_img: UIImageView!
+    @IBOutlet weak var PostTitle_txt: UILabel!
+    @IBOutlet weak var PostDesc_txt: UILabel!
+    @IBOutlet weak var User_name_txt: UILabel!
+    @IBOutlet weak var User_img: UIImageView!
+    
+      var article: JSON?
+    override func viewDidLoad()
+   
+    {   super.viewDidLoad()
+           self.prof_pic.layer.cornerRadius = self.prof_pic.bounds.height / 2
+                 self.prof_pic.clipsToBounds = true
+      
 
-        // Do any additional setup after loading the view.
+PostTitle_txt.text = article!["Postname"].stringValue
+     PostDesc_txt.text = article!["description"].stringValue
+
+      let imageURL = URL(string: article!["imageUrl"].stringValue)
+      Post_img.kf.setImage(with: imageURL)
+
+      let avatarURL = URL(string: article!["userAvatarImageUrl"].stringValue)
+      prof_pic.kf.setImage(with: avatarURL, for: .normal)
+      prof_pic.kf.setBackgroundImage(with: avatarURL, for: .normal)
+        User_name_txt.text = article!["PostUserName"].stringValue
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    @IBAction func Prof_avatar_click(_ sender: Any) {
+    
+    print ("xxx")
+    let vc = UserViewViewController(nibName: "UserViewViewController", bundle: nil)
+           vc.UID = article!["userUID"].stringValue
+           
+           navigationController?.pushViewController(vc, animated: true)
 }
+}
+ 
+    
+

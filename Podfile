@@ -6,6 +6,14 @@ target 'NIBM-App' do
   use_frameworks!
 
   # Pods for NIBM-App
+  pod 'SwiftyJSON'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Database'
+  pod 'Kingfisher', '~> 5.9'
+  pod 'BiometricAuthentication'
+  pod 'GoogleSignIn'
 
   target 'NIBM-AppTests' do
     inherit! :search_paths
@@ -15,15 +23,5 @@ target 'NIBM-App' do
   target 'NIBM-AppUITests' do
     # Pods for testing
   end
-pod 'Firebase/Analytics'
-	pod 'GoogleSignIn'
-	pod 'Firebase/Auth'
-	pod 'Firebase/Database'	
-	pod 'Firebase/Firestore'	
-	pod 'Firebase/Core'
-	pod 'SwiftyJSON'
-	pod 'Firebase/Storage'
-	pod 'Alamofire', '~>4.4'
-	pod 'Kingfisher', '~> 4.0'
-	pod 'IQKeyboardManagerSwift'
+
 end

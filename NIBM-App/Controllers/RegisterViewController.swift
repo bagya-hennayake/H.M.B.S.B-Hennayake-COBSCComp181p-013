@@ -7,24 +7,66 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var RegEmail_txt: UITextField!
+    
+    @IBOutlet weak var RegPass_txt: UITextField!
+    @IBOutlet weak var RegRepass_txt: UITextField!
+    func showAlert(message:String)
+    {
+        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func Regbtn(_ sender: Any)
+    {
+        if ((RegEmail_txt.text?.isEmpty)! || (RegPass_txt.text?.isEmpty)!)
+        {
+            self.showAlert(message: "All fields are mandatory!")
+            return
+        } else {
+            if RegPass_txt.text == RegRepass_txt.text{
+                Auth.auth().createUser(withEmail: RegEmail_txt.text!, password: RegPass_txt.text!)
+                {
+                    (authResult, error) in
+                    print("authResult ", authResult)
+                    if ((error == nil)) {
+                        
+                        self.showAlert(message: "Signup Successfully!")
+                        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginstroyId")
+                        self.present(vc, animated: true, completion: nil)
+                      
+                        
+                    } else {
+                        self.showAlert(message: (error?.localizedDescription)!)
+                    }
+                    
+                    
+                    
+                }
+            }
+            else {
+                
+                self.showAlert(message: "Passwords don't match")
+                
+                
+            }
+            
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

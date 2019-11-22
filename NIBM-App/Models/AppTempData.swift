@@ -6,14 +6,14 @@
 //  Copyright © 2019 Bagya Hennayake. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import Firebase
+import FirebaseAuth
 
-class AppTempData: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class AppTempData{
+    
+    static var userData: AuthStateDidChangeListenerHandle?
     }
     
 
@@ -27,4 +27,3 @@ class AppTempData: UIViewController {
     }
     */
 
-}
