@@ -26,7 +26,28 @@ class NIBM_AppUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    
+   
+    
+    
     func testExample() {
+        let app = XCUIApplication()
+        let element2 = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element
+        let element = element2.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.children(matching: .textField).element.tap()
+        
+        let secureTextField = element.children(matching: .secureTextField).element
+        secureTextField.tap()
+        secureTextField.tap()
+        app.buttons["LOGIN"].tap()
+//        let app = XCUIApplication()
+//           let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+//           element.children(matching: .textField).element.tap()
+//
+//           let secureTextField = element.children(matching: .secureTextField).element
+//           secureTextField.tap()
+//           secureTextField.tap()
+//                   app.buttons["LOGIN"].tap()
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
